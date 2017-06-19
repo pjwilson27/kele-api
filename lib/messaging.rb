@@ -9,13 +9,12 @@ module Messaging
         JSON.parse(response.body).to_a
     end
     
-    def create_message(sender, receipient_id, token, subject, stripped)
-        response = self.class.post('/messages', body: {
-            "sender": sender, 
-            "receipient_id": receipient_id, 
-            "token": token, 
+    def create_message(user_id, receipient_id, subject, stripped)
+        response = self.class.post("/messages", body: {
+            "user_id": user_id, 
+            "receipient_id": receipient_id,
             "subject": subject, 
-            "stripped-text": stripped
+            "stripped": stripped
             
         },
         
